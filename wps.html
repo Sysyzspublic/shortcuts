@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WPS 快捷键</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            margin: 20px;
+        }
+        table {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            border-collapse: collapse;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #f8f9fa;
+            font-family: 'Microsoft YaHei', monospace;
+            margin: 4px 0;
+            font-weight: bold;
+        }
+        th {
+            background-color: #f5f5f5;
+            font-weight: bold;
+        }
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+        @media (max-width: 600px) {
+            table {
+                font-size: 14px;
+            }
+            th, td {
+                padding: 8px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">WPS 常用快捷键</h1>
+<div style="text-align: center; margin: 20px 0;">
+  <label for="os-select">选择系统: </label>
+  <select id="os-select">
+    <option value="windows">Windows</option>
+    <option value="macos">macOS</option>
+  </select>
+</div>
+    <table>
+        <thead>
+            <tr>
+                <th>快捷键</th>
+                <th>功能</th>
+            </tr>
+        </thead>
+        <tbody id="table-body">
+        </tbody>
+    </table>
+
+<script>
+    const windowsShortcuts = [
+        { key: 'Ctrl + N', function: '新建文档' },
+        { key: 'Ctrl + O', function: '打开文档' },
+        { key: 'Ctrl + S', function: '保存文档' },
+        { key: 'Ctrl + P', function: '打印文档' },
+        { key: 'Ctrl + Z', function: '撤销操作' },
+        { key: 'Ctrl + Y', function: '恢复操作' },
+        { key: 'Ctrl + F', function: '查找内容' },
+        { key: 'Ctrl + H', function: '替换内容' },
+        { key: 'Ctrl + A', function: '全选内容' },
+        { key: 'Ctrl + C', function: '复制内容' },
+        { key: 'Ctrl + V', function: '粘贴内容' },
+        { key: 'Ctrl + X', function: '剪切内容' },
+        { key: 'Ctrl + B', function: '加粗文字' },
+        { key: 'Ctrl + I', function: '斜体文字' },
+        { key: 'Ctrl + U', function: '下划线文字' },
+        { key: 'Ctrl + L', function: '左对齐' },
+        { key: 'Ctrl + E', function: '居中对齐' },
+        { key: 'Ctrl + R', function: '右对齐' },
+        { key: 'Ctrl + J', function: '两端对齐' },
+        { key: 'Ctrl + K', function: '插入超链接' },
+        { key: 'Ctrl + M', function: '插入批注' },
+        { key: 'Ctrl + Enter', function: '插入分页符' },
+        { key: 'Ctrl + Home', function: '跳转到文档开头' },
+        { key: 'Ctrl + End', function: '跳转到文档结尾' }
+    ];
+
+    const macosShortcuts = [
+        { key: 'Cmd + N', function: '新建文档' },
+        { key: 'Cmd + O', function: '打开文档' },
+        { key: 'Cmd + S', function: '保存文档' },
+        { key: 'Cmd + P', function: '打印文档' },
+        { key: 'Cmd + Z', function: '撤销操作' },
+        { key: 'Cmd + Shift + Z', function: '恢复操作' },
+        { key: 'Cmd + F', function: '查找内容' },
+        { key: 'Cmd + H', function: '替换内容' },
+        { key: 'Cmd + A', function: '全选内容' },
+        { key: 'Cmd + C', function: '复制内容' },
+        { key: 'Cmd + V', function: '粘贴内容' },
+        { key: 'Cmd + X', function: '剪切内容' },
+        { key: 'Cmd + B', function: '加粗文字' },
+        { key: 'Cmd + I', function: '斜体文字' },
+        { key: 'Cmd + U', function: '下划线文字' },
+        { key: 'Cmd + L', function: '左对齐' },
+        { key: 'Cmd + E', function: '居中对齐' },
+        { key: 'Cmd + R', function: '右对齐' },
+        { key: 'Cmd + J', function: '两端对齐' },
+        { key: 'Cmd + K', function: '插入超链接' },
+        { key: 'Cmd + Option + M', function: '插入批注' },
+        { key: 'Cmd + Enter', function: '插入分页符' },
+        { key: 'Cmd + Up', function: '跳转到文档开头' },
+        { key: 'Cmd + Down', function: '跳转到文档结尾' }
+    ];
+
+    const osSelect = document.getElementById('os-select');
+    const tableBody = document.getElementById('table-body');
+
+    function updateTable(os) {
+        const shortcuts = os === 'windows' ? windowsShortcuts : macosShortcuts;
+        tableBody.innerHTML = shortcuts.map(shortcut => 
+            `<tr>
+                <td>${shortcut.key}</td>
+                <td>${shortcut.function}</td>
+            </tr>`
+        ).join('');
+    }
+
+    osSelect.addEventListener('change', (e) => {
+        updateTable(e.target.value);
+    });
+
+    // 初始化显示Windows快捷键
+    updateTable('windows');
+</script>
+</body>
+</html>
